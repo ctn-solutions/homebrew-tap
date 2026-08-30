@@ -16,7 +16,10 @@ class OvhOps < Formula
     # Le script résout son package via realpath : script et ovhops/ doivent
     # rester côte à côte — installés dans libexec, symlink dans bin.
     libexec.install "ovh-ops", "ovhops"
-    rewrite_shebang detected_python_shebang, "ovh-ops"
+    # Shebang → python3 de Homebrew (le env python3 du PATH peut être absent
+    # ou trop vieux).
+    inreplace libexec/"ovh-ops", "#!/usr/bin/env python3",
+              "#!#{Formula["python@3.12"].opt_bin/"python3"}"
     bin.install_symlink libexec/"ovh-ops"
   end
 
