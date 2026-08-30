@@ -19,7 +19,7 @@ class OvhOps < Formula
     # Shebang → python3 de Homebrew (le env python3 du PATH peut être absent
     # ou trop vieux). Le binaire non versionné est dans libexec/bin du keg.
     inreplace libexec/"ovh-ops", "#!/usr/bin/env python3",
-              "#!#{Formula["python@3.12"].opt_libexec/"bin/python3"}"
+              "#!#{formula_opt_libexec("python@3.12")/"bin/python3"}"
     bin.install_symlink libexec/"ovh-ops"
   end
 
